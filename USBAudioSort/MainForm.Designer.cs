@@ -47,7 +47,7 @@
             // TransferButton
             // 
             this.TransferButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TransferButton.Font = new System.Drawing.Font("BIZ UDPゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TransferButton.Font = new System.Drawing.Font("BIZ UDPゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TransferButton.Location = new System.Drawing.Point(938, 14);
             this.TransferButton.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TransferButton.Name = "TransferButton";
@@ -76,11 +76,10 @@
             this.FullPathColumn});
             this.dataGridView1.Location = new System.Drawing.Point(14, 87);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("BIZ UDPゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -97,21 +96,21 @@
             this.DirectoryNameColumn.HeaderText = "フォルダ名";
             this.DirectoryNameColumn.Name = "DirectoryNameColumn";
             this.DirectoryNameColumn.ReadOnly = true;
-            this.DirectoryNameColumn.Width = 109;
+            this.DirectoryNameColumn.Width = 108;
             // 
             // CreationTimeColumn
             // 
             this.CreationTimeColumn.HeaderText = "作成日時";
             this.CreationTimeColumn.Name = "CreationTimeColumn";
             this.CreationTimeColumn.ReadOnly = true;
-            this.CreationTimeColumn.Width = 97;
+            this.CreationTimeColumn.Width = 96;
             // 
             // LastWriteTimeColumn
             // 
             this.LastWriteTimeColumn.HeaderText = "更新日時";
             this.LastWriteTimeColumn.Name = "LastWriteTimeColumn";
             this.LastWriteTimeColumn.ReadOnly = true;
-            this.LastWriteTimeColumn.Width = 97;
+            this.LastWriteTimeColumn.Width = 96;
             // 
             // FullPathColumn
             // 
@@ -144,7 +143,7 @@
             // 
             // SelectDriveButton
             // 
-            this.SelectDriveButton.Font = new System.Drawing.Font("BIZ UDPゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.SelectDriveButton.Font = new System.Drawing.Font("BIZ UDPゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SelectDriveButton.Location = new System.Drawing.Point(30, 12);
             this.SelectDriveButton.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.SelectDriveButton.Name = "SelectDriveButton";
@@ -184,7 +183,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.SelectDriveButton);
             this.Controls.Add(this.TransferButton);
-            this.Font = new System.Drawing.Font("BIZ UDPゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Font = new System.Drawing.Font("BIZ UDPゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.MinimumSize = new System.Drawing.Size(1085, 39);

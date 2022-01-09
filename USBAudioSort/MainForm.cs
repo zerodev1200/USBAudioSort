@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace USBAudioSort
 {
@@ -62,9 +63,9 @@ namespace USBAudioSort
                 {
 
                     //リストアイテムを渡して、ドラッグアンドドロップを続行します。
-                   dataGridView1.DoDragDrop(
-                    dataGridView1.Rows[rowIndexFromMouseDown],
-                    DragDropEffects.Move);
+                    dataGridView1.DoDragDrop(
+                     dataGridView1.Rows[rowIndexFromMouseDown],
+                     DragDropEffects.Move);
                 }
             }
         }
@@ -118,26 +119,76 @@ namespace USBAudioSort
         {
             if (dataGridView1.Rows.Count == 0) return;
 
-            var currentRow = dataGridView1.SelectedRows[0];
-            var currentRowCount = currentRow.Index;
-            if (currentRowCount < 1)
-                return;
-            dataGridView1.Rows.RemoveAt(currentRowCount);
-            dataGridView1.Rows.Insert(currentRowCount - 1, currentRow);
-            dataGridView1.Rows[currentRowCount - 1].Selected = true;
+            var currentRows = dataGridView1.SelectedRows;
+            var currentRowsCount = currentRows.Count;
+            int topRow = -1;
+            foreach (var currentRow in currentRows.Cast<DataGridViewRow>().OrderBy(x => x.Index))
+            {
+                if (topRow == -1)
+                    topRow = currentRow.Index;
+
+                var currentRowIndex = currentRow.Index;
+                if (currentRowIndex < 1)
+                    return;
+
+                SetDataGridViewAutoSizeMode(false);
+                dataGridView1.Rows.RemoveAt(currentRowIndex);
+                dataGridView1.Rows.Insert(currentRowIndex - 1, currentRow);
+            }
+
+            dataGridView1.ClearSelection();
+            topRow--;
+            for (var i = topRow; i < topRow + currentRowsCount; i++)
+            {
+                dataGridView1.Rows[i].Selected = true;
+            }
+            SetDataGridViewAutoSizeMode(true);
         }
 
         private void ToLowerButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) return;
 
-            var currentRow = dataGridView1.SelectedRows[0];
-            var currentRowCount = currentRow.Index;
-            if (currentRowCount == dataGridView1.Rows.Count - 1)
-                return;
-            dataGridView1.Rows.RemoveAt(currentRowCount);
-            dataGridView1.Rows.Insert(currentRowCount + 1, currentRow);
-            dataGridView1.Rows[currentRowCount + 1].Selected = true;
+            var currentRows = dataGridView1.SelectedRows;
+            var currentRowsCount = currentRows.Count;
+            int topRow = -1;
+            foreach (var currentRow in currentRows.Cast<DataGridViewRow>().OrderByDescending(x => x.Index))
+            {
+                if (topRow == -1)
+                    topRow = currentRow.Index;
+
+                var currentRowIndex = currentRow.Index;
+                if (currentRowIndex == dataGridView1.Rows.Count - 1)
+                    return;
+
+                SetDataGridViewAutoSizeMode(false);
+                dataGridView1.Rows.RemoveAt(currentRowIndex);
+                dataGridView1.Rows.Insert(currentRowIndex + 1, currentRow);
+            }
+
+            dataGridView1.ClearSelection();
+            topRow++;
+            for (var i = topRow; i > topRow - currentRowsCount; i--)
+            {
+                dataGridView1.Rows[i].Selected = true;
+            }
+            SetDataGridViewAutoSizeMode(true);
+        }
+
+        private void SetDataGridViewAutoSizeMode(bool isSet)
+        {
+            if (isSet)
+            {
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            }
+            else
+            {
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            }
         }
 
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
